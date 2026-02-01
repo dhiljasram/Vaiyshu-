@@ -1,1 +1,190 @@
-# Vaiyshu-
+# Vaiyshu-<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine 💖</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
+  overflow-x: hidden;
+  text-align: center;
+  color: #5a2a3c;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: #ff4d88;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+}
+
+input[type="text"] {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  width: 70%;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: #ff4d88;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff2f73;
+}
+
+input[type="file"] {
+  margin-top: 20px;
+}
+
+.gallery {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+    <h1>Happy Valentine’s Day 💕</h1>
+    <h2 id="nameDisplay">My Pretty Girl</h2>
+
+    <p>Enter her name 💗</p>
+    <input type="text" id="nameInput" placeholder="Her name">
+    <br>
+    <button onclick="updateName()">Save</button>
+
+    <div class="message">
+      Every moment with you feels soft, warm, and magical ✨  
+      You’re my favorite place to be.
+    </div>
+
+    <p style="margin-top:20px;">Our memories 📸</p>
+    <input type="file" accept="image/*" multiple onchange="addImages(event)">
+
+    <div class="gallery" id="gallery"></div>
+
+    <footer>
+      Made with endless love 💖
+    </footer>
+  </div>
+</div>
+
+<script>
+function updateName() {
+  const name = document.getElementById("nameInput").value;
+  if (name.trim() !== "") {
+    document.getElementById("nameDisplay").innerText = name;
+  }
+}
+
+function addImages(event) {
+  const files = event.target.files;
+  const gallery = document.getElementById("gallery");
+
+  for (let file of files) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      gallery.appendChild(img);
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+// Floating hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
